@@ -20,11 +20,16 @@ function quickTime(event, action, time) {
 
 }
 
+function loseHealth(damage) {
+    characterObjects.health -= damage / characterObjects.defense
+    console.log(`Health is now ${characterObjects.health}`)
+}
+
 const characterObjects = {
     health: 100,
-    defense: 0,
-    attack: 0,
-    sneak: 0,
+    defense: 1,
+    attack: 1,
+    sneak: 1,
     weaponType: "",
     inventory: {
         potion: [],
@@ -87,15 +92,6 @@ else {
 
 console.log(characterObjects.class)
 
-// Bear Cave Arc 
-function bearCave() {
-    console.log(`Youre in the Bear Cave`)
-
-}
-
-
-
-
 
 
 
@@ -127,7 +123,7 @@ if (characterObjects.class === "archer") {
     }
 
     if (success === false) {                               //if user fails any of the quicktime events they get Loser prompt         
-        characterObjects.health -= 10
+        loseHealth(10)
         console.log(`The monster whooped you up pretty good. -10 Health`)
         console.log(`You patch up your wounds and head towards safety..`)
     }
@@ -186,15 +182,39 @@ if (riverSuccess === true) {                                                  //
 
             console.log(`You made it out of the rapids safely`)
             console.log(`${characterObjects.name} keeps paddling until reaching the end of the river`)
+            bearCave()
         }
     }
 }
 
 if (riverSuccess === false) {                               //if user fails any of the quicktime events they get Loser prompt         
-    characterObjects.health -= 10
+    loseHealth(10)
     characterObjects.gold -= 25
     console.log(`You get knocked off your boat and washed up on the shore. ${characterObjects.name} notices he lost all his gold. Bummer!`)
     console.log(`You dust your self off and head towards Bear Cave`)
+}
+
+
+const wolfPack = () => {
+
+}
+
+
+
+function bearCave () {
+    console.log(`Youre entering the Bear Cave`)
+    console.log(`As you walk, you come across a bear.`)
+    console.log(`get ready for a fight...`)
+
+
+    let bearFight = quickTime(`The bear charges you and swipes you with its claw`, `dodge away`, 6)
+    if (bearFight === false) {
+        loseHealth(15)
+    }
+    bearFight = quickTime(`It now tries to bite your face`, `push away`, 6)
+    if (bearFight === false) {
+        loseHealth(15)
+    } 
 
     
 }
