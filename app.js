@@ -80,3 +80,14 @@ if (characterObjects.class === "archer") {
     console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
 }
 
+if (characterObjects.class === "rogue") {
+    console.log(`${characterObjects.name} is hiding in a tree stalking a deer.`)
+    console.log(`As the deer comes closer ${characterObjects.name} prepares to attack the deer`)
+    console.log(`when suddenly a monster runs by and scares the deer away`)
+    console.log(`The monster then comes to attack ${characterObjects.name}!!`)
+    // quick time event 
+    console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
+    characterObjects.inventory.gold += 50 
+    characterObjects.inventory.potion.push(`Health Potion`)
+    console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
+}
