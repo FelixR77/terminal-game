@@ -1,4 +1,4 @@
-const prompt = require (`prompt-sync`) ();
+const prompt = require(`prompt-sync`)();
 
 /**
  * // this is an initiator for the function bellow, in this case the quicktime function
@@ -14,20 +14,20 @@ function quickTime(event, action, time) {
     let start = Date.now()                                                      // setting the starting time of function to right now
     console.log(event)                                                         // inform user of event 
     const userInput = prompt(`Press the letter "${action}" : `)               // ask for user input 
-    if (userInput === action && (Date.now() - start < time*1000)) {          //takes the difference between the time
+    if (userInput === action && (Date.now() - start < time * 1000)) {          //takes the difference between the time
         return true                                                         //compares it to the time parameter
-    }  else { return false} 
+    } else { return false }
 
 }
 
 const characterObjects = {
-    health: 100, 
+    health: 100,
     defense: 0,
     attack: 0,
-    sneak: 0, 
+    sneak: 0,
     weaponType: "",
     inventory: {
-        potion: [], 
+        potion: [],
         gold: 0,
         weaponArray: [],
     }
@@ -56,7 +56,7 @@ const monsters = {
         health: 200
     }
 
-    
+
 }
 
 
@@ -79,8 +79,8 @@ else if (classInput == 2) {
 }
 else if (classInput == 3) {
     characterObjects.class = "swordsman"
-} 
-else {  
+}
+else {
     characterObjects.class = "archer"
     console.log("Invalid input. Class set to Archer")
 }
@@ -88,7 +88,7 @@ else {
 console.log(characterObjects.class)
 
 // Bear Cave Arc 
-function bearCave () {
+function bearCave() {
     console.log(`Youre in the Bear Cave`)
 
 }
@@ -111,25 +111,30 @@ if (characterObjects.class === "archer") {
     console.log(`The monster then comes to attack ${characterObjects.name}!!`)
 
 
-                let success = quickTime(`Run away`,`D`, 5)              // Creating the "Success" variable and initiating the quicktime event
-                if (success === true) {                                 // Checks if the user has succeed in the quicktime event
-                    success = quickTime(`Shoot the monster`,`E`, 5)     // Starting another quicktime event with the same conditions. 
-                    if (success === true) {                             // Returns pass / fail 
-                                
-                        console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
-                        characterObjects.inventory.gold += 50 
-                        characterObjects.inventory.potion.push(`Health Potion`)
-                        console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
-                        
-                    } 
-                }
 
-                if ( success === false) {                               //if user fails any of the quicktime events they get Loser prompt         
-                    characterObjects.health -= 10
-                    console.log(`The monster whooped you up pretty good. -10 Health`)
-                    console.log(`You patch up your wounds and head towards safety..`)
-                }
+
+    let success = quickTime(`Run away`, `D`, 5)              // Creating the "Success" variable and initiating the quicktime event
+    if (success === true) {                                 // Checks if the user has succeed in the quicktime event
+        success = quickTime(`Shoot the monster`, `E`, 5)     // Starting another quicktime event with the same conditions. 
+        if (success === true) {                             // Returns pass / fail 
+
+            console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
+            characterObjects.inventory.gold += 50
+            characterObjects.inventory.potion.push(`Health Potion`)
+            console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
+
+        }
+    }
+
+    if (success === false) {                               //if user fails any of the quicktime events they get Loser prompt         
+        characterObjects.health -= 10
+        console.log(`The monster whooped you up pretty good. -10 Health`)
+        console.log(`You patch up your wounds and head towards safety..`)
+    }
 }
+
+
+
 
 if (characterObjects.class === "rogue") {
     console.log(`${characterObjects.name} is hiding in a tree stalking a deer.`)
@@ -138,7 +143,7 @@ if (characterObjects.class === "rogue") {
     console.log(`The monster then comes to attack ${characterObjects.name}!!`)
     // quick time event 
     console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
-    characterObjects.inventory.gold += 50 
+    characterObjects.inventory.gold += 50
     characterObjects.inventory.potion.push(`Health Potion`)
     console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
 }
@@ -149,10 +154,12 @@ if (characterObjects.class === "swordsman") {
     console.log(`Suddenly a monster runs by and charges toward ${characterObjects.name}!!`)
     // quick time event 
     console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
-    characterObjects.inventory.gold += 50 
+    characterObjects.inventory.gold += 50
     characterObjects.inventory.potion.push(`Health Potion`)
     console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
 }
+
+
 
 
 
@@ -170,24 +177,24 @@ console.log(`3. A leaf from the world tree... Protected by elves.`)
 console.log(`When all of a sudden...`)
 console.log(`You enter rapids and need to hold on for dear life.. `)
 
-                let riverSuccess = quickTime(`Quick! Grab your paddle`,`grab`, 6)              // Creating the "Success" variable and initiating the quicktime event
-                if (riverSuccess === true) {                                                  // Checks if the user has succeed in the quicktime event
-                    riverSuccess = quickTime(`Paddle harder!!`,`paddle`, 6)                     // Starting another quicktime event with the same conditions. 
-                    if (riverSuccess === true) {
-                        riverSuccess = quickTime(`There's a branch! Duck!!`,`duck`, 6)                     // Starting another quicktime event with the same conditions. 
-                            if (riverSuccess === true) {                                                    // Returns pass / fail 
-                                
-                                console.log(`You made it out of the rapids safely`)
-                                console.log(`${characterObjects.name} keeps paddling until reaching the end of the river`)
-                                characterObjects.inventory.gold += 50 
-                                characterObjects.inventory.potion.push(`Health Potion`)
-                                console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
-                    }  
-                    } 
-                }
+let riverSuccess = quickTime(`Quick! Grab your paddle`, `grab`, 6)              // Creating the "Success" variable and initiating the quicktime event
+if (riverSuccess === true) {                                                  // Checks if the user has succeed in the quicktime event
+    riverSuccess = quickTime(`Paddle harder!!`, `paddle`, 6)                     // Starting another quicktime event with the same conditions. 
+    if (riverSuccess === true) {
+        riverSuccess = quickTime(`There's a branch! Duck!!`, `duck`, 6)                     // Starting another quicktime event with the same conditions. 
+        if (riverSuccess === true) {                                                    // Returns pass / fail 
 
-                if ( riverSuccess === false) {                               //if user fails any of the quicktime events they get Loser prompt         
-                    characterObjects.health -= 10
-                    console.log(`The monster whooped you up pretty good. -10 Health`)
-                    console.log(`You patch up your wounds and head towards safety..`)
-                }
+            console.log(`You made it out of the rapids safely`)
+            console.log(`${characterObjects.name} keeps paddling until reaching the end of the river`)
+        }
+    }
+}
+
+if (riverSuccess === false) {                               //if user fails any of the quicktime events they get Loser prompt         
+    characterObjects.health -= 10
+    characterObjects.gold -= 25
+    console.log(`You get knocked off your boat and washed up on the shore. ${characterObjects.name} notices he lost all his gold. Bummer!`)
+    console.log(`You dust your self off and head towards Bear Cave`)
+
+    
+}
