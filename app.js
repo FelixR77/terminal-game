@@ -85,12 +85,12 @@ if (characterObjects.class === "archer") {
     console.log(`The monster then comes to attack ${characterObjects.name}!!`)
 
 
-                let success = quickTime(`Press D: `,`D`, 5) 
-                if (success === true) {
-                    success = quickTime(`Press E: `,`E`, 5)
-                    if (success === true) {
-                        success = quickTime(`Press A: `,`A`, 5) 
-                        if (success === true) {
+                let success = quickTime(`Press D: `,`D`, 5)    // Creating the "Success" variable and initiating the quicktime event
+                if (success === true) {                         // Checks if the user has succeed in the quicktime event
+                    success = quickTime(`Press E: `,`E`, 5)     // Starting another quicktime event with the same conditions. 
+                    if (success === true) {                     // Returns pass / fail 
+                        success = quickTime(`Press A: `,`A`, 5) // Does it again 
+                        if (success === true) {                 // if user succeeds in every quicktime event they get these logs
                             console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
                             characterObjects.inventory.gold += 50 
                             characterObjects.inventory.potion.push(`Health Potion`)
@@ -99,7 +99,7 @@ if (characterObjects.class === "archer") {
                     } 
                 }
 
-                if ( success === false) {
+                if ( success === false) {                       //if user fails any of the quicktime events they get Loser prompt         
                     console.log(`Loser`)
                 }
 }
