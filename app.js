@@ -35,7 +35,8 @@ const characterObjects = {
         potion: [],
         gold: 0,
         weaponArray: [],
-    }
+    },
+    ingredients: [] 
 }
 
 
@@ -195,7 +196,8 @@ if (riverSuccess === false) {                               //if user fails any 
 }
 
 
-const wolfPack = () => {
+function wolfPack () {
+    console.log(`While on your journey you run into a wolf pack`)
 
 }
 
@@ -205,6 +207,7 @@ function bearCave () {
     console.log(`Youre entering the Bear Cave`)
     console.log(`As you walk, you come across a bear.`)
     console.log(`get ready for a fight...`)
+   
 
 
     let bearFight = quickTime(`The bear charges you and swipes you with its claw`, `dodge away`, 6)
@@ -215,6 +218,20 @@ function bearCave () {
     if (bearFight === false) {
         loseHealth(15)
     } 
+    bearFight = quickTime(`Rush past to grab a mushroom`, `grab mushroom`, 6)
+    if (bearFight === false) {
+        loseHealth(15)
+    }
+    bearFight = quickTime(`Run past the bear to escape`, `run real fast`, 6)
+    if (bearFight === false) {
+        loseHealth(15)
+    } 
 
-    
+
+    console.log(`You escaped the bear safely with the mushrooms you need`) 
+    console.log(`And now you head over to the Elfs`)
+    characterObjects.ingredients.push(`Mushroom`) 
+    if (characterObjects.ingredients[0] != `Fur`) {
+        wolfPack() 
+    }
 }
