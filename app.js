@@ -41,4 +41,29 @@ const monsters = {
 }
 
 
-console.log(`Welcome to Scary Forest III. Press `)
+console.log(`Welcome to Scary Forest III`)
+prompt(`Press any key to play`)
+
+characterObjects.name = prompt(`insert your name: `)  // Calling the charachterObjects object. Adds "name".
+console.log(characterObjects)
+
+console.log(`chose your class`)
+console.log(` 1: archer 2: rogue 3: swordsman `)
+
+const classInput = prompt(``)
+
+if (classInput == 1) {
+    characterObjects.class = "archer"
+}
+else if (classInput == 2) {
+    characterObjects.class = "rogue"
+}
+else if (classInput == 3) {
+    characterObjects.class = "swordsman"
+} 
+else {  
+    characterObjects.class = "archer"
+    console.log("Invalid input. Class set to Archer")
+}
+
+console.log(characterObjects.class)
