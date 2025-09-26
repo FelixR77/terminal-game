@@ -129,10 +129,6 @@ if (characterObjects.class === "archer") {
         console.log(`You patch up your wounds and head towards safety..`)
     }
 }
-
-
-
-
 if (characterObjects.class === "rogue") {
     console.log(`${characterObjects.name} is hiding in a tree stalking a deer.`)
     console.log(`As the deer comes closer ${characterObjects.name} prepares to attack the deer`)
@@ -144,7 +140,6 @@ if (characterObjects.class === "rogue") {
     characterObjects.inventory.potion.push(`Health Potion`)
     console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
 }
-
 if (characterObjects.class === "swordsman") {
     console.log(`${characterObjects.name} is setting up camp for the night.`)
     console.log(`${characterObjects.name} hears rustling. ${characterObjects.name} picks up his sword `)
@@ -155,12 +150,12 @@ if (characterObjects.class === "swordsman") {
     characterObjects.inventory.potion.push(`Health Potion`)
     console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
 }
-
-
-
-
-
-
+// 
+// 
+// This is where we left off Finish the strories for each charachter so far we have 1/3 
+// 
+// Finishe the story and conditions for the final BOSS
+// 
 
 // This is the River Escape section -- happening after the tutorial sections reguardless of outcome
 
@@ -199,6 +194,33 @@ if (riverSuccess === false) {                               //if user fails any 
 function wolfPack () {
     console.log(`While on your journey you run into a wolf pack`)
 
+
+    let wolfFight = quickTime(`Alpha wolf tries assert dominance over you`, `puff chest`, 6)
+    if (wolfFight === false) {
+        characterObjects.defense = characterObjects.defense / 2;
+        console.log(`${characterObjects.name} realizes he a total beta. -10 aura`)
+    }
+    wolfFight = quickTime(`Wolf pack attacks all at once`, `spinning leg whip`, 10) 
+    if (wolfFight === false) {
+        loseHealth(15)
+    } 
+    wolfFight = quickTime(`${characterObjects.name} grabs a lock of wolf fur`, `grab wolf fur`, 8)
+    if (wolfFight === false) {
+        loseHealth(15)
+    }
+    wolfFight = quickTime(`Run for your life`, `run real real fast`, 10)
+    if (wolfFight === false) {
+        loseHealth(15)
+    } 
+
+
+    console.log(`You escaped the wolfs safely with the fur you need`) 
+    console.log(`And now you head over to the Elfs`)
+    characterObjects.ingredients.push(`Fur`) 
+    if (characterObjects.ingredients[0] != `Mushroom`) {
+        bearCave() 
+    }
+
 }
 
 
@@ -235,3 +257,11 @@ function bearCave () {
         wolfPack() 
     }
 }
+
+
+
+
+
+
+
+
