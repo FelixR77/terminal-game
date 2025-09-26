@@ -9,7 +9,7 @@ const characterObjects = {
     weaponType: "",
     inventory: {
         potion: [], 
-        money: 0,
+        gold: 0,
         weaponArray: [],
     }
 }
@@ -67,3 +67,16 @@ else {
 }
 
 console.log(characterObjects.class)
+
+if (characterObjects.class === "archer") {
+    console.log(`${characterObjects.name} is stalking a deer.`)
+    console.log(`As ${characterObjects.name} prepares to shoot the deer`)
+    console.log(`A monster runs by and scares the deer away`)
+    console.log(`The monster then comes to attack ${characterObjects.name}!!`)
+    // quick time event 
+    console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
+    characterObjects.inventory.gold += 50 
+    characterObjects.inventory.potion.push(`Health Potion`)
+    console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
+}
+
