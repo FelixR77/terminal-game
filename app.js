@@ -1,9 +1,5 @@
 const prompt = require(`prompt-sync`)();
 
-// Add Tutorials for remaining characters
-// Shop / Merchant functions
-// Final Boss (elf)
-// End story from there
 
 /**
  * // this is an initiator for the function bellow, in this case the quicktime function
@@ -33,14 +29,14 @@ function loseHealth(damage) {
 const characterObjects = {
     health: 100,
     defense: 1,
-    attack: 1,
+    attack: 25,
     sneak: 1,
     inventory: {
         potion: [],
         gold: 45,
         weaponArray: 3,
     },
-    ingredients: [] 
+    ingredients: []
 }
 
 
@@ -142,12 +138,12 @@ if (characterObjects.class === "rogue") {
     console.log(`As the deer comes closer ${characterObjects.name} prepares to attack the deer`)
     console.log(`when suddenly a monster runs by and scares the deer away`)
     console.log(`The monster then comes to attack ${characterObjects.name}!!`)
-    
 
-    let success = quickTime(`Run away`, `D`, 5)              
-    if (success === true) {                                 
-        success = quickTime(`Throw a dagger at the monster`, `E`, 5)     
-        if (success === true) {                             
+
+    let success = quickTime(`Run away`, `D`, 5)
+    if (success === true) {
+        success = quickTime(`Throw a dagger at the monster`, `E`, 5)
+        if (success === true) {
 
             console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
             characterObjects.inventory.gold += 50
@@ -169,11 +165,11 @@ if (characterObjects.class === "swordsman") {
     console.log(`${characterObjects.name} is setting up camp for the night.`)
     console.log(`${characterObjects.name} hears rustling. ${characterObjects.name} picks up his sword `)
     console.log(`Suddenly a monster runs by and charges toward ${characterObjects.name}!!`)
-    
-    let success = quickTime(`Run away`, `D`, 5)              
-    if (success === true) {                                 
-        success = quickTime(`Use the sword to attack the monster`, `E`, 5)     
-        if (success === true) {                             
+
+    let success = quickTime(`Run away`, `D`, 5)
+    if (success === true) {
+        success = quickTime(`Use the sword to attack the monster`, `E`, 5)
+        if (success === true) {
 
             console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
             characterObjects.inventory.gold += 50
@@ -224,10 +220,11 @@ if (riverSuccess === false) {                               //if user fails any 
     characterObjects.gold -= 25
     console.log(`You get knocked off your boat and washed up on the shore. ${characterObjects.name} notices he lost all his gold. Bummer!`)
     console.log(`You dust your self off and head towards Bear Cave`)
+    wolfPack()
 }
 
 
-function wolfPack () {
+function wolfPack() {
     console.log(`While on your journey you run into a wolf pack`)
 
 
@@ -236,10 +233,10 @@ function wolfPack () {
         characterObjects.defense = characterObjects.defense / 2;
         console.log(`${characterObjects.name} realizes he a total beta. -10 aura`)
     }
-    wolfFight = quickTime(`Wolf pack attacks all at once`, `spinning leg whip`, 10) 
+    wolfFight = quickTime(`Wolf pack attacks all at once`, `spinning leg whip`, 10)
     if (wolfFight === false) {
         loseHealth(15)
-    } 
+    }
     wolfFight = quickTime(`${characterObjects.name} grabs a lock of wolf fur`, `grab wolf fur`, 8)
     if (wolfFight === false) {
         loseHealth(15)
@@ -247,25 +244,25 @@ function wolfPack () {
     wolfFight = quickTime(`Run for your life`, `run real real fast`, 10)
     if (wolfFight === false) {
         loseHealth(15)
-    } 
+    }
 
 
-    console.log(`You escaped the wolfs safely with the fur you need`) 
+    console.log(`You escaped the wolfs safely with the fur you need`)
     console.log(`And now you head over to the Elfs`)
-    characterObjects.ingredients.push(`Fur`) 
+    characterObjects.ingredients.push(`Fur`)
     if (characterObjects.ingredients[0] != `Mushroom`) {
-        bearCave() 
+        bearCave()
     }
 
 }
 
 
 
-function bearCave () {
+function bearCave() {
     console.log(`Youre entering the Bear Cave`)
     console.log(`As you walk, you come across a bear.`)
     console.log(`get ready for a fight...`)
-   
+
 
 
     let bearFight = quickTime(`The bear charges you and swipes you with its claw`, `dodge away`, 6)
@@ -275,7 +272,7 @@ function bearCave () {
     bearFight = quickTime(`It now tries to bite your face`, `push away`, 6)
     if (bearFight === false) {
         loseHealth(15)
-    } 
+    }
     bearFight = quickTime(`Rush past to grab a mushroom`, `grab mushroom`, 6)
     if (bearFight === false) {
         loseHealth(15)
@@ -283,14 +280,14 @@ function bearCave () {
     bearFight = quickTime(`Run past the bear to escape`, `run real fast`, 6)
     if (bearFight === false) {
         loseHealth(15)
-    } 
+    }
 
 
-    console.log(`You escaped the bear safely with the mushrooms you need`) 
+    console.log(`You escaped the bear safely with the mushrooms you need`)
     console.log(`And now you head over to the Elfs`)
-    characterObjects.ingredients.push(`Mushroom`) 
+    characterObjects.ingredients.push(`Mushroom`)
     if (characterObjects.ingredients[0] != `Fur`) {
-        wolfPack() 
+        wolfPack()
     }
 }
 
@@ -312,13 +309,13 @@ if (visitMerchant === `Yes`) {
     function merchant() {
         console.log(`${characterObjects.name} has ${characterObjects.inventory.gold}g`)
         console.log(`what would you like to purchase?`)
-        const purchase = prompt(`> `)                       // Recursive Function
+        const purchase = prompt(`> `)
         if (purchase === `1` && characterObjects.inventory.gold >= 10) {
             console.log(`${characterObjects.name} bought a Health Potion!`)
             characterObjects.inventory.push(`Health Potion`)
             characterObjects.inventory.gold -= 10
-            merchant()
-        } else if (purchase === `2` && characterObjects.inventory.gold >= 25){
+            merchant()                                                                  // This creates a recursive function because it loops to the begining of the function after user input
+        } else if (purchase === `2` && characterObjects.inventory.gold >= 25) {
             console.log(`${characterObjects.name} bought a Armor!!`)
             characterObjects.defense += 2
             characterObjects.inventory.gold -= 25
@@ -343,6 +340,89 @@ else {
 }
 
 
+console.log(`You head on your way to the Elf forest`)
+console.log(`You are met with a band of Elves`)
+console.log(`You tell them you need their leaf to save the Father Tree`)
+console.log(`They say: "You can have it, but you have to fight us for it!!"`)
+console.log(`The battle begins!!`)
 
 
+
+function bossFight() {
+    console.log(`You have ${characterObjects.health} health`)
+    console.log(`Enemy has ${monsters.elf.health} health`)
+    console.log(`What would you like to do?`)
+    console.log(`Attack`)
+    console.log(`Inventory`)
+    if (characterObjects.class === `archer`) {
+        console.log(`Shoot from distance`)
+    }
+    const bossInput = prompt(`> `)
+    if (bossInput === `Attack`) {
+        monsters.elf.health -= characterObjects.attack
+        if (monsters.elf.health > 0) {
+            loseHealth(monsters.elf.attack)
+            if (characterObjects.health > 0) {
+                bossFight()
+            } else {
+                die()
+            }
+        } else {
+            win()
+        }
+
+    } else if (bossInput === `Inventory`) {
+        function checkInventory() {
+            console.log(`You check your Inventory. You have:`)
+            console.log(`${characterObjects.inventory.weaponArray} arrows`)
+            console.log(`${characterObjects.inventory.potion.length} Health Potions`)
+            console.log(`What would you like to do?`)
+            console.log(`1. Use Potion`)
+            console.log(`2. Exit inventory`) 
+            const inventoryInput = prompt(`> `)
+            if (inventoryInput === `1` && characterObjects.inventory.potions.length > 0) {
+                characterObjects.health += 50
+                characterObjects.inventory.potion.pop()
+                console.log(`${characterObjects.name} gained 50 health!!`)
+                checkInventory()
+            } else if (inventoryInput === `2`) {
+                bossFight()
+            } else {
+                console.log(`Invalid prompt. Try Again!!`)
+                checkInventory()
+            }
+        }
+        checkInventory()
+    } else if (bossInput === `Shoot from distance` && characterObjects.class === `archer`) {
+        if (characterObjects.inventory.weaponArray > 0) {
+            monsters.elf.health -= characterObjects.attack
+            if (monsters.elf.health > 0) {
+                bossFight()
+            } else {
+                win()
+            }
+        }
+
+    } else {
+        console.log(`Invalid Input: Try Again!!`)
+        bossFight()
+    }
+
+}
+
+bossFight()
+
+function win() {
+    console.log(`You have defeated the elves, the Elf Leader giver you the leaf`)
+    console.log(`You finally have all of the ingredients needed to save Father Tree`)
+    console.log(`You win!! Congratulations!`)
+    prompt(`press any key to close the game.`)
+}
+
+function die() {
+    console.log(`Wow you lost.. got your butt kicked by the elves`)
+    console.log(`They dont give you the leaf now Father Tree dies because of your weakness you pathetic coward`)
+    console.log(`Game OVER`)
+    prompt(`Press any key to end the game`)
+}
 
