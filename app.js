@@ -35,11 +35,10 @@ const characterObjects = {
     defense: 1,
     attack: 1,
     sneak: 1,
-    weaponType: "",
     inventory: {
         potion: [],
-        gold: 0,
-        weaponArray: [],
+        gold: 45,
+        weaponArray: 3,
     },
     ingredients: [] 
 }
@@ -295,8 +294,53 @@ function bearCave () {
     }
 }
 
+// Merchant Experience
+console.log(`Along your journey towards the elf forest you find a Merchant`)
+console.log(`Would you like shop with the merchant? (Yes / No)`)
+const visitMerchant = prompt(`> `)
+if (visitMerchant === `Yes`) {
+    console.log(`You stop by the merchant and browse their wares`)
+    console.log(`You see the Merchant is selling:`)
+    console.log(`1. Health Potion (10g)`)
+    console.log(`2. Armor (25g)`)
+    if (characterObjects.class === `archer`) {
+        console.log(`3. Arrows (5g) - ${characterObjects.name} has ${characterObjects.inventory.weaponArray} arrows`)
+    }
+    console.log(`Type "leave" if you want to exit`)
 
 
+    function merchant() {
+        console.log(`${characterObjects.name} has ${characterObjects.inventory.gold}g`)
+        console.log(`what would you like to purchase?`)
+        const purchase = prompt(`> `)                       // Recursive Function
+        if (purchase === `1` && characterObjects.inventory.gold >= 10) {
+            console.log(`${characterObjects.name} bought a Health Potion!`)
+            characterObjects.inventory.push(`Health Potion`)
+            characterObjects.inventory.gold -= 10
+            merchant()
+        } else if (purchase === `2` && characterObjects.inventory.gold >= 25){
+            console.log(`${characterObjects.name} bought a Armor!!`)
+            characterObjects.defense += 2
+            characterObjects.inventory.gold -= 25
+            merchant()
+        } else if (purchase === `3` && characterObjects.class === `archer` && characterObjects.inventory.gold >= 5) {
+            console.log(`${characterObjects.name} bought a Arrows!`)
+            characterObjects.inventory.weaponArray += 1
+            characterObjects.inventory.gold -= 5
+            merchant()
+        } else if (purchase === `leave`) {
+            console.log(`You are leaving the shop`)
+        } else {
+            console.log(`Invalid Input. Try again!`)
+            merchant()
+        }
+    }
+    merchant()
+
+}
+else {
+    console.log(`You chose to skip past the Merchant and continue on your way.`)
+}
 
 
 
