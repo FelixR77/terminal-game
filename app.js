@@ -1,5 +1,10 @@
 const prompt = require(`prompt-sync`)();
 
+// Add Tutorials for remaining characters
+// Shop / Merchant functions
+// Final Boss (elf)
+// End story from there
+
 /**
  * // this is an initiator for the function bellow, in this case the quicktime function
  * // this will create a tooltip, explaining the elements of the function we made
@@ -100,7 +105,8 @@ console.log(characterObjects.class)
 
 
 
-// This if statement creates the first branching path 
+// This if statement creates the first branching path.
+// Archer path 
 if (characterObjects.class === "archer") {
     console.log(`${characterObjects.name} is stalking a deer.`)
     console.log(`As ${characterObjects.name} prepares to shoot the deer`)
@@ -129,33 +135,64 @@ if (characterObjects.class === "archer") {
         console.log(`You patch up your wounds and head towards safety..`)
     }
 }
+
+
+// Rogue path
 if (characterObjects.class === "rogue") {
     console.log(`${characterObjects.name} is hiding in a tree stalking a deer.`)
     console.log(`As the deer comes closer ${characterObjects.name} prepares to attack the deer`)
     console.log(`when suddenly a monster runs by and scares the deer away`)
     console.log(`The monster then comes to attack ${characterObjects.name}!!`)
-    // quick time event 
+    
+
+    let success = quickTime(`Run away`, `D`, 5)              
+    if (success === true) {                                 
+        success = quickTime(`Throw a dagger at the monster`, `E`, 5)     
+        if (success === true) {                             
+
+            console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
+            characterObjects.inventory.gold += 50
+            characterObjects.inventory.potion.push(`Health Potion`)
+            console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
+
+        }
+    }
+
+
     console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
     characterObjects.inventory.gold += 50
     characterObjects.inventory.potion.push(`Health Potion`)
     console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
 }
+
+// Swordsman path
 if (characterObjects.class === "swordsman") {
     console.log(`${characterObjects.name} is setting up camp for the night.`)
     console.log(`${characterObjects.name} hears rustling. ${characterObjects.name} picks up his sword `)
     console.log(`Suddenly a monster runs by and charges toward ${characterObjects.name}!!`)
-    // quick time event 
+    
+    let success = quickTime(`Run away`, `D`, 5)              
+    if (success === true) {                                 
+        success = quickTime(`Use the sword to attack the monster`, `E`, 5)     
+        if (success === true) {                             
+
+            console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
+            characterObjects.inventory.gold += 50
+            characterObjects.inventory.potion.push(`Health Potion`)
+            console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
+
+        }
+    }
+
     console.log(`You defeated the monster!! You have looted 50 gold and a health potion`)
     characterObjects.inventory.gold += 50
     characterObjects.inventory.potion.push(`Health Potion`)
     console.log(`${characterObjects.name} hears more monsters coming. He starts to run toward safety`)
 }
-// 
-// 
-// This is where we left off Finish the strories for each charachter so far we have 1/3 
-// 
-// Finishe the story and conditions for the final BOSS
-// 
+
+
+
+
 
 // This is the River Escape section -- happening after the tutorial sections reguardless of outcome
 
