@@ -24,6 +24,9 @@ function quickTime(event, action, time) {
 function loseHealth(damage) {
     characterObjects.health -= damage / characterObjects.defense
     console.log(`Health is now ${characterObjects.health}`)
+    if (characterObjects.health <= 0) {
+        die() 
+    }
 }
 
 const characterObjects = {
@@ -365,6 +368,8 @@ function bossFight() {
             if (characterObjects.health > 0) {
                 bossFight()
             } else {
+                console.log(`Wow you lost.. got your butt kicked by the elves`)
+                console.log(`They dont give you the leaf now Father Tree dies because of your weakness you pathetic coward`)
                 die()
             }
         } else {
@@ -420,8 +425,7 @@ function win() {
 }
 
 function die() {
-    console.log(`Wow you lost.. got your butt kicked by the elves`)
-    console.log(`They dont give you the leaf now Father Tree dies because of your weakness you pathetic coward`)
+    
     console.log(`Game OVER`)
     prompt(`Press any key to end the game`)
 }
