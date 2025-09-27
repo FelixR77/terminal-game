@@ -312,7 +312,7 @@ if (visitMerchant === `Yes`) {
         const purchase = prompt(`> `)
         if (purchase === `1` && characterObjects.inventory.gold >= 10) {
             console.log(`${characterObjects.name} bought a Health Potion!`)
-            characterObjects.inventory.push(`Health Potion`)
+            characterObjects.inventory.potion.push(`Health Potion`)
             characterObjects.inventory.gold -= 10
             merchant()                                                                  // This creates a recursive function because it loops to the begining of the function after user input
         } else if (purchase === `2` && characterObjects.inventory.gold >= 25) {
@@ -380,7 +380,7 @@ function bossFight() {
             console.log(`1. Use Potion`)
             console.log(`2. Exit inventory`) 
             const inventoryInput = prompt(`> `)
-            if (inventoryInput === `1` && characterObjects.inventory.potions.length > 0) {
+            if (inventoryInput === `1` && characterObjects.inventory.potion.length > 0) {
                 characterObjects.health += 50
                 characterObjects.inventory.potion.pop()
                 console.log(`${characterObjects.name} gained 50 health!!`)
