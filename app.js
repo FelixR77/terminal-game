@@ -33,7 +33,6 @@ const characterObjects = {
     health: 100,
     defense: 1,
     attack: 25,
-    sneak: 1,
     inventory: {
         potion: [],
         gold: 45,
@@ -59,11 +58,6 @@ const monsters = {
         defense: 50,
         health: 100,
     },
-    scorpion: {
-        attack: 50,
-        defense: 75,
-        health: 200
-    }
 
 
 }
@@ -78,7 +72,7 @@ console.log(characterObjects)
 console.log(`chose your class`)
 console.log(` 1: archer 2: rogue 3: swordsman `)
 
-const classInput = prompt(``)
+const classInput = prompt(`> `)
 
 if (classInput == 1) {
     characterObjects.class = "archer"
@@ -196,7 +190,7 @@ if (characterObjects.class === "swordsman") {
 
 console.log(`You spot a river boat and hop in.`)
 console.log(`Out of nowhere, a fairy pops out. It starts to talk to ${characterObjects.name}`)
-console.log(`It is asking for help to save Father Tree from the Evil Scary Scorpion`)
+console.log(`It is asking for help to save Father Tree from poison`)
 console.log(`In order to save Father Tree you will need ...`)
 console.log(`1. Mushroom found from the dark bear cave.`)
 console.log(`2. Wolf Fur, through killing a magical wolf`)
@@ -221,7 +215,7 @@ if (riverSuccess === true) {                                                  //
 if (riverSuccess === false) {                               //if user fails any of the quicktime events they get Loser prompt         
     loseHealth(10)
     characterObjects.gold -= 25
-    console.log(`You get knocked off your boat and washed up on the shore. ${characterObjects.name} notices he lost all his gold. Bummer!`)
+    console.log(`You get knocked off your boat and washed up on the shore. ${characterObjects.name} notices he lost 25 gold. Bummer!`)
     console.log(`You dust your self off and head towards Bear Cave`)
     wolfPack()
 }
