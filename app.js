@@ -311,7 +311,9 @@ if (visitMerchant === `Yes`) {
             console.log(`${characterObjects.name} bought a Health Potion!`)
             characterObjects.inventory.potion.push(`Health Potion`)
             characterObjects.inventory.gold -= 10
-            merchant()                                                                  // This creates a recursive function because it loops to the begining of the function after user input
+            merchant()    
+            
+            // This creates a recursive function because it loops to the begining of the function after user input
         } else if (purchase === `2` && characterObjects.inventory.gold >= 25) {
             console.log(`${characterObjects.name} bought a Armor!!`)
             characterObjects.defense += 2
@@ -363,7 +365,7 @@ function bossFight() {
                 bossFight()
             } else {
                 console.log(`Wow you lost.. got your butt kicked by the elves`)
-                console.log(`They dont give you the leaf now Father Tree dies because of your weakness you pathetic coward`)
+                console.log(`They dont give you the leaf now Father Tree dies because of your weakness`)
                 die()
             }
         } else {
